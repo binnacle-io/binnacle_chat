@@ -1,0 +1,26 @@
+<%= javascript_tag(id: 'binnacle_remove') do %>
+$("body").data("binnacle",
+  {
+    accountId: '<%= binnacle_chat_account %>',
+    appId: '<%= binnacle_chat_app %>',
+    apiKey: '<%= binnacle_chat_api_key %>',
+    apiSecret: '<%= binnacle_chat_api_secret %>',
+    endPoint: '<%= binnacle_chat_url %>',
+    contextId: '<%= binnacle_chat_context %>',
+    identity: '<%= binnacle_chat_identity %>',
+    room: '<%= binnacle_chat_room %>'
+  }
+);
+<% end %>
+
+<div class="binnacle_chat" id="<%= binnacle_chat_id %>">
+  <div class="well" id="messages">
+  </div>
+
+  <legend id="username"></legend>
+
+  <form class="form" id="chat-form">
+    <input id="message" type="text" class="form-control" placeholder="Type something…" />
+  </form>
+</div>
+</div>

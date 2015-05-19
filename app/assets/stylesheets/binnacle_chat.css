@@ -1,0 +1,16 @@
+/*
+ *= require jquery-ui
+ *= require jspanel/jquery.jspanel
+ */
+
+#messages {
+ overflow-y: scroll;
+}
+
+#chat-form {
+  width: auto !important; /*just to override your inline CSS */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
