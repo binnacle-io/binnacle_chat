@@ -2,15 +2,108 @@
  *= require jquery-ui
  *= require jspanel/jquery.jspanel
  */
-
+ 
+.jsPanel.jsPanel-theme-default {
+  border: 1px #ddd solid;
+  box-shadow: 0 0 6px rgba(0, 33, 50, 0.1), 0 7px 25px rgba(17, 38, 60, 0.2);
+}
+.jsPanel {
+  border-radius: 5px 5px 0 0;
+}
+.jsPanel-hdr {
+  padding: 5px;
+}
+.jsPanel-hdr-r span {
+  color: #092f40;
+}
 #messages {
  overflow-y: scroll;
+ margin-bottom: 55px;
+ padding: 10px;
 }
-
 #chat-form {
-  width: auto !important; /*just to override your inline CSS */
+  width: 100% !important; /*just to override your inline CSS */
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
+  background: #eee;
+  padding: 10px;
+}
+legend {
+  border-bottom: none;
+}
+.jsPanel-hdr {
+  background: #03a9f4;
+}
+.jsPanel-title {
+  color: #fff !important;
+}
+.jsglyph-chevron-up {
+  display: none;
+}
+/** Chat Messages **/
+.chat-item {
+  padding: 5px 0;
+}
+.chat-user {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  background-clip: padding-box;
+  margin-top: 6px;
+}
+.item-left .chat-user {
+  float: left;
+}
+.item-right .chat-user {
+  float: right;
+}
+.chat-body {
+  padding: 8px 10px;
+  border-radius: 5px;
+  position: relative;
+  background-clip: padding-box;
+  width: 70%;
+}
+.item-left .chat-body {
+  background: #f5f5f5;
+  margin-left: 60px;
+}
+.item-right .chat-body {
+  background: #dceffc;
+  margin-right: 10px;
+  float: right;
+}
+.chat-item .chat-body:before {
+  border-style: solid;
+  border-width: 6px;
+  content: "";
+  cursor: pointer;
+  position: absolute;
+  top: 25px;
+}
+.item-left .chat-body:before {
+  border-color: transparent #f5f5f5 transparent transparent;
+  left: -12px;
+}
+.item-right .chat-body:before {
+  border-color: transparent transparent transparent #dceffc;
+  left: auto;
+  right: -12px;
+}
+.chat-item .name {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.chat-item .time {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  color: #666;
+  font-size: 10px;
+  font-weight: 300;
+}
+/** Bootstrap overrides **/
+.form-control {
+  padding: 6px 10px;
 }
