@@ -3,19 +3,33 @@
 #= require binnacle
 #= require jspanel
 
-$(document).ready ->
+$(document).ready ->  
   if $('.binnacle_chat').length > 0
     binnacleData = $("body").data("binnacle")
-
+    
     # configure jspanel
     binnacleChat = $.jsPanel
       title: binnacleData.identity
       position: 'bottom right'
       iconfont: 'font-awesome'
+      controls: 
+          iconfont: 'font-awesome'
+          smallify: 'false'
+      id: 'jsPanel-1'
+      addClass:
+          header: 'panel-heading'
+          content: 'panel-body'
+      overflow: 'scroll'
+      size: width: '400px', height: '250px'
+      
+      # Pass footer toolbar so it won't scroll with the messages
+      toolbarFooter: '<form class="form" id="chat-form"><input id="message" type="text" class="form-control" placeholder="Type something…" /></form>'
       #bootstrap: 'danger'
 
     binnacleChat.content.append $('.binnacle_chat')
-
+    
+    $('.jsPanel').addClass 'panel-primary panel'
+    
     #
     client = null
     sessionId = Math.random().toString(36).substr(2)
@@ -36,6 +50,7 @@ $(document).ready ->
     $('#chat-form').submit (e) ->
       e.preventDefault()
       message = $('#message').val()
+      console.log(message)
       room = $('input[name=\'room\']').val()
       binnacleEvent = new (Binnacle.Event)(
         sessionId: sessionId
