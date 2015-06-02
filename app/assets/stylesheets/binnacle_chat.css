@@ -14,7 +14,8 @@
   padding: 5px;
 }
 .jsPanel-hdr-r span {
-  color: #092f40;
+  color: #fff;
+  font-size: 12px;
 }
 #messages {
  overflow-y: scroll;
@@ -22,7 +23,7 @@
  padding: 10px;
 }
 #chat-form {
-  width: 100% !important; /*just to override your inline CSS */
+  width: 100% !important;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -33,7 +34,7 @@ legend {
   border-bottom: none;
 }
 .jsPanel-hdr {
-  background: #03a9f4;
+  background: #337ab7;
 }
 .jsPanel-title {
   color: #fff !important;
@@ -42,6 +43,25 @@ legend {
   display: none;
 }
 /** Chat Messages **/
+.chat-box {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.chat {
+  margin: 0;
+  padding: 0;
+}
+.chat-box .panel {
+  margin: 0;
+}
+.chat-box .panel-heading a {
+  color: #fff;
+}
+.chat-box .panel-body {
+  overflow-y: scroll;
+  height: 250px;
+}
 .chat-item {
   padding: 5px 0;
 }
@@ -63,7 +83,7 @@ legend {
   border-radius: 5px;
   position: relative;
   background-clip: padding-box;
-  width: 70%;
+  width: 75%;
 }
 .item-left .chat-body {
   background: #f5f5f5;
@@ -104,6 +124,9 @@ legend {
   font-weight: 300;
 }
 /** Bootstrap overrides **/
-.form-control {
+.chat-box .form-control {
   padding: 6px 10px;
+}
+.chat-box .panel-primary {
+  border-color: #ddd;
 }
