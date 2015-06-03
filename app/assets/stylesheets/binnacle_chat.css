@@ -3,19 +3,44 @@
  *= require jspanel/jquery.jspanel
  */
  
+.jsPanel { overflow: visible; }
 .jsPanel-hdr { padding: 5px 10px; }
 .jsPanel-hdr-r span { color: #fff; font-size: 12px; }
-#messages { margin-bottom: 25px; padding: 10px; }
+#messages { margin-bottom: 45px; padding: 10px; }
 .jsPanel-btn-small { display: none !important; }
-#chat-form {
-  width: 100% !important;
+#footer {
   position: absolute;
+  width: 100%;
+  background: #eee;
   bottom: 0;
   left: 0;
-  background: #eee;
   padding: 10px;
 }
-.jsPanel-hdr h3 { color: #fff !important; }
+#footer .members {
+  cursor: pointer;
+  color: #444;
+  font-size: 14px;
+  margin-right: 10px;
+  padding: 5px 0;
+  text-decoration: none;
+}
+#footer .members:hover { color: #337ab7; }
+#footer .popover-content ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+}
+#footer .popover-content li { padding: 3px 0; }
+#footer form { width: 95%; }
+h3.jsPanel-title { 
+  color: #fff !important;
+  font-size: 14px;
+  font-variant: normal;
+  text-transform: capitalize; 
+  padding: 0;
+  line-height: 1.5;
+}
 .binnacle_chat .chat-item { padding: 5px 0; }
 .binnacle_chat .chat-user {
   width: 50px;
