@@ -6,9 +6,11 @@
 .jsPanel { overflow: visible; }
 .jsPanel-hdr { padding: 5px 10px; }
 .jsPanel-hdr-r span { color: #fff; font-size: 12px; }
+
+.binnacle_chat .template { display: none !important; }
 #messages { margin-bottom: 45px; padding: 10px; }
 .jsPanel-btn-small { display: none !important; }
-#footer {
+#binnacle-chat-footer {
   position: absolute;
   width: 100%;
   background: #eee;
@@ -16,7 +18,7 @@
   left: 0;
   padding: 10px;
 }
-#footer .members {
+#binnacle-chat-footer .members {
   cursor: pointer;
   color: #444;
   font-size: 14px;
@@ -24,15 +26,15 @@
   padding: 5px 0;
   text-decoration: none;
 }
-#footer .members:hover { color: #337ab7; }
-#footer .popover-content ul {
+#binnacle-chat-footer .members:hover { color: #337ab7; }
+#binnacle-chat-footer .popover-content ul {
   margin: 0;
   padding: 0;
   list-style: none;
   font-size: 12px;
 }
-#footer .popover-content li { padding: 3px 0; }
-#footer form { width: 95%; }
+#binnacle-chat-footer .popover-content li { padding: 3px 0; }
+#binnacle-chat-footer form { width: 95%; }
 h3.jsPanel-title { 
   color: #fff !important;
   font-size: 14px;

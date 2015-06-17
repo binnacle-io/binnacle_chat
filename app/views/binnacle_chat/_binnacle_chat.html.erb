@@ -1,5 +1,5 @@
 <%= javascript_tag(id: 'binnacle_remove') do %>
-$("body").data("binnacle",
+$("body").data("binnacle-data",
   {
     accountId: '<%= binnacle_chat_account %>',
     appId: '<%= binnacle_chat_app %>',
@@ -15,31 +15,30 @@ $("body").data("binnacle",
 
 <div class="binnacle_chat" id="<%= binnacle_chat_id %>">
   <div id="messages">
-    <div class="chat-item item-left clearfix">
+    <div id='binnacle-chat-left' class="chat-item item-left clearfix template">
       <div class="chat-user">
         <img src="http://lorempixel.com/50/50/" class="img-responsive img-circle">
       </div>
       <div class="chat-body">
-        <div class="name">Batman</div>
-        <div class="time hidden-xs"><i class="fa fa-clock-o"></i> 15 mins ago</div>
-        <div class="text">
-          <p>Using my detective skills, I've determined your true identity.</p>
+        <div class="name">#{name}</div>
+        <div class="time hidden-xs"><i class="fa fa-clock-o"></i> <span>#{time}</span></div>
+        <div class="message">
+          <p>#{message}</p>
         </div>
       </div>
-    </div> <!-- /chat-item -->
-    <div class="chat-item item-right clearfix">
+    </div> <!-- /binnacle-chat-left -->
+    <div id='binnacle-chat-right' class="chat-item item-right clearfix template">
       <div class="chat-user">
         <img src="http://lorempixel.com/50/50/food" class="img-responsive img-circle">
       </div>
       <div class="chat-body">
-        <div class="name">Superman</div>
-        <div class="time hidden-xs"><i class="fa fa-clock-o"></i> 8 mins ago</div>
-        <div class="text">
-          <p>This is awkward...</p>
-          <p>...</p>
+        <div class="name">#{name}</div>
+        <div class="time hidden-xs"><i class="fa fa-clock-o"></i> <span>#{time}</span></div>
+        <div class="message">
+          <p>#{message}</p>
         </div>
       </div>
-    </div> <!-- /chat-item -->
+    </div> <!-- /binnacle-chat-right -->
     <div class="chat-item item-left clearfix">
       <div class="chat-user">
         <img src="http://lorempixel.com/50/50/" class="img-responsive img-circle">

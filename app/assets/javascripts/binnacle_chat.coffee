@@ -3,20 +3,16 @@
 #= require binnacle
 #= require jspanel
 
-$(document).ready ->  
-
-  $ ->
-    $('[data-toggle="popover"]').popover()
-    
+$ ->
   if $('.binnacle_chat').length > 0
-    binnacleData = $("body").data("binnacle")
+    binnacleData = $("body").data("binnacle-data")
     
     # configure jspanel
     binnacleChat = $.jsPanel
-      title: 'Room name'
+      title: binnacleData.room
       position: 'bottom right'
       iconfont: 'font-awesome'
-      controls: 
+      controls:
           iconfont: 'font-awesome'
           smallify: 'false'
       id: 'jsPanel-1'
@@ -27,7 +23,7 @@ $(document).ready ->
       size: width: '450px', height: '300px'
       
       # Pass footer toolbar so it won't scroll with the messages
-      toolbarFooter: '<div id="footer"><a class="pull-left members" data-toggle="popover" data-placement="top" data-html="true" data-content="<ul><li>Batman</li><li>Room member</li><li>Superman</li></ul>"><i class="fa fa-user"></i></a><form class="form pull-right"><input id="message" type="text" class="form-control" placeholder="Type something…" /></form></div>'
+      toolbarFooter: '<div id="binnacle-chat-footer"><a class="pull-left members" data-toggle="popover" data-placement="top" data-html="true" data-content="<ul><li>Room Member</li></ul>"><i class="fa fa-user"></i></a><form id="chat-form" class="form pull-right"><input id="message" type="text" class="form-control" placeholder="Type something…" /></form></div>'
       #bootstrap: 'danger'
 
     binnacleChat.content.append $('.binnacle_chat')
@@ -36,28 +32,37 @@ $(document).ready ->
     
     #if minimalized, change footer position absolute to relative
     $('.jsPanel-btn-min').click ->
-      $('.jsPanel #footer').css 'position', 'relative'
+      $('.jsPanel #binnacle-chat-footer').css 'position', 'relative'
     
     #else change it back to absolute
     $('.jsPanel-btn-norm').click ->
-      $('.jsPanel #footer').css 'position', 'absolute'
+      $('.jsPanel #binnacle-chat-footer').css 'position', 'absolute'
     
-    #
     client = null
     sessionId = Math.random().toString(36).substr(2)
 
     binnacleEventHandler = (event) ->
       $messages = $('#messages')
-      $message = $("""<div class="alert alert-success"><i class="icon-user"></i> #{event.json.user}:#{event.json.message}</div>""")
+
+      if event.clientId == binnacleData.identity
+        $message = $("#binnacle-chat-right").clone()
+      else
+        $message = $("#binnacle-chat-left").clone()
+
+      $message.find('.message p').text(event.json.message)
+      $message.find('.name').text(event.json.user)
+      $message.find('.time span').text((new Date(event.eventTime)).toLocaleString())
+      $message.removeAttr('id').removeClass('template')
+
       $messages.append $message
       $messages.animate { scrollTop: $messages.prop('scrollHeight') }, 500
       $('#messages div:last-child').effect 'highlight', {}, 2000
 
     subscriberJoined = (event) ->
-      console.log 'subscriber joined: ' + event
+      client && client.subscribers(displaySubscribers)
 
     subscriberLeft = (event) ->
-      console.log 'subscriber left: ' + event
+      client && client.subscribers(displaySubscribers)
 
     $('#chat-form').submit (e) ->
       e.preventDefault()
@@ -92,3 +97,17 @@ $(document).ready ->
     )
 
     client.subscribe()
+
+    displaySubscribers = (subscribers, xhrData) ->
+      subscribersList = "<ul>"
+      subscribers.sort()
+      for subscriber in subscribers
+        subscribersList += "<li>#{subscriber}</li>"
+
+      subscribersList += "</ul>"
+
+      $('#binnacle-chat-footer .members').attr('data-content', subscribersList)
+
+    client.subscribers(displaySubscribers)
+
+  $('[data-toggle="popover"]').popover()
