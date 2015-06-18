@@ -12,7 +12,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '~> 2.1.3'
   gem 'rails-assets-jspanel', '~> 2.5.2'
   gem 'rails-assets-bootstrap-sass', '~> 3.3.4', group: :development
-  gem 'rails-assets-components-font-awesome', '~> 4.2.0', group: :development
+  gem 'rails-assets-components-font-awesome', '~> 4.3.0', group: :development
   gem 'rails-assets-rails-behaviors', '~> 0.8.2', group: :development
 end
 

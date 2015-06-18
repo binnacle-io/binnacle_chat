@@ -81,3 +81,7 @@ h3.jsPanel-title {
   font-size: 10px;
   font-weight: 300;
 }
+.binnacle_chat .user-activity {
+  margin: 10px auto;
+  color: #aaa;
+}
