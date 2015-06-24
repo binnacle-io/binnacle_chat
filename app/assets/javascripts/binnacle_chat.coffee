@@ -54,19 +54,32 @@ $ ->
       $message.find('.time span').text((new Date(event.eventTime)).toLocaleString())
       $message.removeAttr('id').removeClass('template')
 
-      $messages.append $message
-      $messages.animate { scrollTop: $messages.prop('scrollHeight') }, 500
-      $('#messages div:last-child').effect 'highlight', {}, 2000
+      displayEvent($message)
 
     subscriberJoined = (event) ->
+      $messages = $('#messages')
+      activity = $('.user-joined.template').clone()
+      activity.find('span').text(event.presenceId)
+      activity.removeClass('template')
+
+      displayEvent(activity)
+
       client && client.subscribers(displaySubscribers)
 
     subscriberLeft = (event) ->
+      $messages = $('#messages')
+      activity = $('.user-left.template').clone()
+      activity.find('span').text(event.presenceId)
+      activity.removeClass('template')
+
+      displayEvent(activity)
+
       client && client.subscribers(displaySubscribers)
 
     $('#chat-form').submit (e) ->
       e.preventDefault()
       message = $('#message').val()
+      return false unless message
       room = $('input[name=\'room\']').val()
       binnacleEvent = new (Binnacle.Event)(
         sessionId: sessionId
@@ -97,6 +110,13 @@ $ ->
     )
 
     client.subscribe()
+
+    displayEvent = (event) ->
+      $messages = $('#messages')
+      $messages.append event
+
+      $('.jsPanel-content').animate { scrollTop: $('.jsPanel-content').prop('scrollHeight') }, 500
+      event.effect 'highlight', {}, 2000
 
     displaySubscribers = (subscribers, xhrData) ->
       subscribersList = "<ul>"
