@@ -8,6 +8,8 @@ $("body").data("binnacle-data",
     endPoint: '<%= binnacle_chat_url %>',
     contextId: '<%= binnacle_chat_context %>',
     identity: '<%= binnacle_chat_identity %>',
+    email: '<%= binnacle_chat_email %>',
+    displayName: '<%= binnacle_chat_display_name %>',
     room: '<%= binnacle_chat_room %>'
   }
 );
@@ -15,9 +17,9 @@ $("body").data("binnacle-data",
 
 <div class="binnacle_chat" id="<%= binnacle_chat_id %>">
   <div id="messages">
-    <div id='binnacle-chat-left' class="chat-item item-left clearfix template">
+    <div id='binnacle-chat-left' class="chat-item item-left clearfix template hidden">
       <div class="chat-user">
-        <img src="http://lorempixel.com/50/50/" class="img-responsive img-circle">
+        <img src="#" class="img-responsive img-circle">
       </div>
       <div class="chat-body">
         <div class="name">#{name}</div>
@@ -27,9 +29,9 @@ $("body").data("binnacle-data",
         </div>
       </div>
     </div> <!-- /binnacle-chat-left -->
-    <div id='binnacle-chat-right' class="chat-item item-right clearfix template">
+    <div id='binnacle-chat-right' class="chat-item item-right clearfix template hidden">
       <div class="chat-user">
-        <img src="http://lorempixel.com/50/50/food" class="img-responsive img-circle">
+        <img src="#" class="img-responsive img-circle">
       </div>
       <div class="chat-body">
         <div class="name">#{name}</div>
@@ -39,34 +41,11 @@ $("body").data("binnacle-data",
         </div>
       </div>
     </div> <!-- /binnacle-chat-right -->
-    <div class="chat-item item-left clearfix">
-      <div class="chat-user">
-        <img src="http://lorempixel.com/50/50/" class="img-responsive img-circle">
-      </div>
-      <div class="chat-body">
-        <div class="name">Batman</div>
-        <div class="time hidden-xs"><i class="fa fa-clock-o"></i> 3 mins ago</div>
-        <div class="text">
-          <p>>: )</p>
-        </div>
-      </div>
-    </div> <!-- /chat-item -->
+
     <div class="user-activity user-joined text-center template">
       <i class="fa fa-smile-o"></i> <span>#{Room Member}</span> has joined the room
     </div>
-    <div class="chat-item item-right clearfix">
-      <div class="chat-user">
-        <img src="http://lorempixel.com/50/50/people" class="img-responsive img-circle">
-      </div>
-      <div class="chat-body">
-        <div class="name">Room member</div>
-        <div class="time hidden-xs"><i class="fa fa-clock-o"></i> a min ago</div>
-        <div class="text">
-          <p>What are we doing tonight?</p>
-          <p>Because I've been thinking about this thing that everyone's been talking about. You know, the one where there's a spaceship involved and a horse riding a man to outer space.</p>
-        </div>
-      </div>
-    </div> <!-- /chat-item -->
+
     <div class="user-activity user-left text-center template">
       <i class="fa fa-frown-o"></i> <span>#{Room Member}</span> has left the room
     </div>

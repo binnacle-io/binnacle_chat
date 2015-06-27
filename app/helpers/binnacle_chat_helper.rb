@@ -13,7 +13,9 @@ module BinnacleChatHelper
         binnacle_chat_api_key: ENV["BINNACLE_API_KEY"],
         binnacle_chat_api_secret: ENV["BINNACLE_API_SECRET"],
         binnacle_chat_room: options[:room],
-        binnacle_chat_identity: options[:identity]
+        binnacle_chat_identity: options[:identity],
+        binnacle_chat_email: options[:email],
+        binnacle_chat_display_name: options[:display_name]
       }
     )
   end

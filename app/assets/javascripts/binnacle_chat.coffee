@@ -2,42 +2,43 @@
 #= require jquery-ui
 #= require binnacle
 #= require jspanel
+#= require gravatarjs
 
 $ ->
   if $('.binnacle_chat').length > 0
     binnacleData = $("body").data("binnacle-data")
-    
+
     # configure jspanel
     binnacleChat = $.jsPanel
       title: binnacleData.room
       position: 'bottom right'
       iconfont: 'font-awesome'
       controls:
-          iconfont: 'font-awesome'
-          smallify: 'false'
+        iconfont: 'font-awesome'
+        smallify: 'false'
       id: 'jsPanel-1'
       addClass:
-          header: 'panel-heading'
-          content: 'panel-body'
+        header: 'panel-heading'
+        content: 'panel-body'
       overflow: 'scroll'
       size: width: '450px', height: '300px'
-      
+
       # Pass footer toolbar so it won't scroll with the messages
       toolbarFooter: '<div id="binnacle-chat-footer"><a class="pull-left members" data-toggle="popover" data-placement="top" data-html="true" data-content="<ul><li>Room Member</li></ul>"><i class="fa fa-user"></i></a><form id="chat-form" class="form pull-right"><input id="message" type="text" class="form-control" placeholder="Type something…" /></form></div>'
       #bootstrap: 'danger'
 
     binnacleChat.content.append $('.binnacle_chat')
-    
+
     $('.jsPanel').addClass 'panel-primary panel'
-    
+
     #if minimalized, change footer position absolute to relative
     $('.jsPanel-btn-min').click ->
       $('.jsPanel #binnacle-chat-footer').css 'position', 'relative'
-    
+
     #else change it back to absolute
     $('.jsPanel-btn-norm').click ->
       $('.jsPanel #binnacle-chat-footer').css 'position', 'absolute'
-    
+
     client = null
     sessionId = Math.random().toString(36).substr(2)
 
@@ -50,9 +51,10 @@ $ ->
         $message = $("#binnacle-chat-left").clone()
 
       $message.find('.message p').text(event.json.message)
-      $message.find('.name').text(event.json.user)
+      $message.find('.name').text(event.json.displayName)
       $message.find('.time span').text((new Date(event.eventTime)).toLocaleString())
       $message.removeAttr('id').removeClass('template')
+      $message.find('.chat-user img').attr('src', gravatar(event.json.email))
 
       displayEvent($message)
 
@@ -87,7 +89,10 @@ $ ->
         clientId: client.options.identity
         json:
           user: client.options.identity
-          message: message)
+          email: binnacleData.email
+          displayName: binnacleData.displayName
+          message: message
+      )
       client.signal binnacleEvent
       $('#message').val ''
 
@@ -114,6 +119,7 @@ $ ->
     displayEvent = (event) ->
       $messages = $('#messages')
       $messages.append event
+      event.removeClass('hidden')
 
       $('.jsPanel-content').animate { scrollTop: $('.jsPanel-content').prop('scrollHeight') }, 500
       event.effect 'highlight', {}, 2000
