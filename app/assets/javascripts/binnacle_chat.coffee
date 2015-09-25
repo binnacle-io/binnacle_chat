@@ -97,12 +97,10 @@ $ ->
       $('#message').val ''
 
     client = new (Binnacle.Client)(
-      accountId: binnacleData.accountId
-      appId: binnacleData.appId
-      apiKey: binnacleData.apiKey
-      apiSecret: binnacleData.apiSecret
-      endPoint: binnacleData.endPoint
-      contextId: binnacleData.contextId
+      apiKey: gon.apiKey
+      apiSecret: gon.apiSecret
+      endPoint: gon.endPoint
+      contextId: gon.contextId
       missedMessages: true
       limit: 5
       since: 30

@@ -1,12 +1,10 @@
+<% content_for :binnacle_chat do %>
+  <%= include_gon %>
+<% end %>
+
 <%= javascript_tag(id: 'binnacle_remove') do %>
 $("body").data("binnacle-data",
   {
-    accountId: '<%= binnacle_chat_account %>',
-    appId: '<%= binnacle_chat_app %>',
-    apiKey: '<%= binnacle_chat_api_key %>',
-    apiSecret: '<%= binnacle_chat_api_secret %>',
-    endPoint: '<%= binnacle_chat_url %>',
-    contextId: '<%= binnacle_chat_context %>',
     identity: '<%= binnacle_chat_identity %>',
     email: '<%= binnacle_chat_email %>',
     displayName: '<%= binnacle_chat_display_name %>',

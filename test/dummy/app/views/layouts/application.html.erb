@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Binnacle Kitchen Sink</title>
+  <title>Binnacle Chat Widget Example</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <%= yield :binnacle_chat %>
 </head>
 <body role="document" class="<%= "#{params[:controller]}_#{params[:action]}" %>">
   <div class="container" role="main">
