@@ -6,17 +6,26 @@
 
 $ ->
   if $('.binnacle_chat').length > 0
-    binnacleData = $("body").data("binnacle-data")
+    identity = $('.binnacle_chat').data('identity')
+    email = $('.binnacle_chat').data('email')
+    displayName = $('.binnacle_chat').data('display-name')
+    room = $('.binnacle_chat').data('room')
+    id = $('.binnacle_chat').data('binnacle_chat_id')
+    title = $('.binnacle_chat').data('title')
 
     # configure jspanel
     binnacleChat = $.jsPanel
-      title: binnacleData.room
-      position: 'bottom right'
+      title: title
+      position:
+        top: (panel) ->
+          $(window).height() - parseInt(panel.css('height'))
+        right: "auto"
+      offset: top: -10, left: 10
+      bootstrap: 'default'
       iconfont: 'font-awesome'
       controls:
-        iconfont: 'font-awesome'
-        smallify: 'false'
-      id: 'jsPanel-1'
+        buttons: 'none'
+      id: id
       addClass:
         header: 'panel-heading'
         content: 'panel-body'
@@ -25,13 +34,12 @@ $ ->
 
       # Pass footer toolbar so it won't scroll with the messages
       toolbarFooter: '<div id="binnacle-chat-footer"><a class="pull-left members" data-toggle="popover" data-placement="top" data-html="true" data-content="<ul><li>Room Member</li></ul>"><i class="fa fa-user"></i></a><form id="chat-form" class="form pull-right"><input id="message" type="text" class="form-control" placeholder="Type something…" /></form></div>'
-      #bootstrap: 'danger'
 
     binnacleChat.content.append $('.binnacle_chat')
 
     $('.jsPanel').addClass 'panel-primary panel'
 
-    #if minimalized, change footer position absolute to relative
+    #if minimized, change footer position absolute to relative
     $('.jsPanel-btn-min').click ->
       $('.jsPanel #binnacle-chat-footer').css 'position', 'relative'
 
@@ -43,9 +51,10 @@ $ ->
     sessionId = Math.random().toString(36).substr(2)
 
     binnacleEventHandler = (event) ->
+      console.log("Received message! #{event}")
       $messages = $('#messages')
 
-      if event.clientId == binnacleData.identity
+      if event.clientId == identity
         $message = $("#binnacle-chat-right").clone()
       else
         $message = $("#binnacle-chat-left").clone()
@@ -59,40 +68,43 @@ $ ->
       displayEvent($message)
 
     subscriberJoined = (event) ->
-      $messages = $('#messages')
-      activity = $('.user-joined.template').clone()
-      activity.find('span').text(event.presenceId)
-      activity.removeClass('template')
+      if event.presenceId isnt client.options.identity
+        $messages = $('#messages')
+        activity = $('.user-joined.template').clone()
+        activity.find('span').text(event.presenceId)
+        activity.removeClass('template')
 
-      displayEvent(activity)
+        displayEvent(activity)
 
-      client && client.subscribers(displaySubscribers)
+        client && client.subscribers(displaySubscribers)
 
     subscriberLeft = (event) ->
-      $messages = $('#messages')
-      activity = $('.user-left.template').clone()
-      activity.find('span').text(event.presenceId)
-      activity.removeClass('template')
+      if event.presenceId isnt client.options.identity
+        $messages = $('#messages')
+        activity = $('.user-left.template').clone()
+        activity.find('span').text(event.presenceId)
+        activity.removeClass('template')
 
-      displayEvent(activity)
+        displayEvent(activity)
 
-      client && client.subscribers(displaySubscribers)
+        client && client.subscribers(displaySubscribers)
 
     $('#chat-form').submit (e) ->
       e.preventDefault()
       message = $('#message').val()
       return false unless message
-      room = $('input[name=\'room\']').val()
+
       binnacleEvent = new (Binnacle.Event)(
         sessionId: sessionId
-        eventName: binnacleData.room
+        eventName: room
         clientId: client.options.identity
         json:
           user: client.options.identity
-          email: binnacleData.email
-          displayName: binnacleData.displayName
+          email: email
+          displayName: displayName
           message: message
       )
+
       client.signal binnacleEvent
       $('#message').val ''
 
@@ -104,9 +116,9 @@ $ ->
       missedMessages: true
       limit: 5
       since: 30
-      identity: binnacleData.identity
-      filterBy: 'event'
-      filterByValue: binnacleData.room
+      identity: identity
+      # filterBy: 'event'
+      # filterByValue: room
       onSignal: binnacleEventHandler
       onSubscriberJoined: subscriberJoined
       onSubscriberLeft: subscriberLeft

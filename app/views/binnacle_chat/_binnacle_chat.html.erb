@@ -1,19 +1,14 @@
 <% content_for :binnacle_chat do %>
-  <%= include_gon %>
+  <%= Gon::Base.render_data %>
 <% end %>
 
-<%= javascript_tag(id: 'binnacle_remove') do %>
-$("body").data("binnacle-data",
-  {
-    identity: '<%= binnacle_chat_identity %>',
-    email: '<%= binnacle_chat_email %>',
-    displayName: '<%= binnacle_chat_display_name %>',
-    room: '<%= binnacle_chat_room %>'
-  }
-);
-<% end %>
-
-<div class="binnacle_chat" id="<%= binnacle_chat_id %>">
+<div class="binnacle_chat" id="<%= binnacle_chat_id %>"
+     data-identity="<%= binnacle_chat_identity %>"
+     data-email="<%= binnacle_chat_email %>"
+     data-display-name="<%= binnacle_chat_display_name %>"
+     data-room="<%= binnacle_chat_room %>"
+     data-title="<%= binnacle_chat_title %>"
+  >
   <div id="messages">
     <div id='binnacle-chat-left' class="chat-item item-left clearfix template hidden">
       <div class="chat-user">

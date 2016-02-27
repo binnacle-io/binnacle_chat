@@ -21,6 +21,14 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.2.4"
   s.add_dependency "sass-rails", "~> 5.0"
   s.add_dependency "gon", "~> 6.0.1"
+  s.add_dependency "font-awesome-sass", "~> 4.5.0"
+
+  s.add_dependency  'rails-assets-binnacle'
+  s.add_dependency  'rails-assets-jquery-ui'
+  s.add_dependency  'rails-assets-jquery'
+  s.add_dependency  'rails-assets-jspanel'
+  s.add_dependency  'rails-assets-gravatarjs'
+  s.add_dependency  'rails-assets-bootstrap-sass'
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "puma"

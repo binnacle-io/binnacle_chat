@@ -1,8 +1,7 @@
 /*
- *= require jquery-ui
  *= require jspanel/jquery.jspanel
  */
- 
+
 .jsPanel { overflow: visible; }
 .jsPanel-hdr { padding: 5px 10px; }
 .jsPanel-hdr-r span { color: #fff; font-size: 12px; }
@@ -35,11 +34,11 @@
 }
 #binnacle-chat-footer .popover-content li { padding: 3px 0; }
 #binnacle-chat-footer form { width: 95%; }
-h3.jsPanel-title { 
+h3.jsPanel-title {
   color: #fff !important;
   font-size: 14px;
   font-variant: normal;
-  text-transform: capitalize; 
+  text-transform: capitalize;
   padding: 0;
   line-height: 1.5;
 }

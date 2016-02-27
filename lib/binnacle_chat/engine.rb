@@ -1,3 +1,5 @@
+require 'bundler/setup'
+
 module BinnacleChat
   class Engine < ::Rails::Engine
     initializer "binnacle_chat.load_initializer" do
