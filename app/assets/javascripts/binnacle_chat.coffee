@@ -117,8 +117,8 @@ $ ->
       limit: 5
       since: 30
       identity: identity
-      # filterBy: 'event'
-      # filterByValue: room
+      filterBy: 'event'
+      filterByValue: room
       onSignal: binnacleEventHandler
       onSubscriberJoined: subscriberJoined
       onSubscriberLeft: subscriberLeft
