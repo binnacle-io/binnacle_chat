@@ -7,7 +7,7 @@ gemspec
 
 # client-side assets
 source 'https://rails-assets.org' do
-  gem 'rails-assets-binnacle', '>= 0.1.5'
+  gem 'rails-assets-binnacle', '>= 0.1.6'
   gem 'rails-assets-jquery-ui', '~> 1', '>= 1.11.3'
   gem 'rails-assets-jquery', '~> 2.1', '>= 2.1.4'
   gem 'rails-assets-jspanel', '~> 2.6', '>= 2.6.1'
