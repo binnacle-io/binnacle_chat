@@ -6,7 +6,7 @@ module BinnacleChat
       gon.apiKey = ENV["BINNACLE_API_KEY"]
       gon.apiSecret = ENV["BINNACLE_API_SECRET"]
       gon.contextId = ENV["BINNACLE_CHAT_CTX"]
-      gon.endPoint = "http://#{ENV["BINNACLE_ENDPOINT"]}:8080"
+      gon.endPoint = "#{Rails.env.production? ? 'https' : 'http'}://#{ENV["BINNACLE_ENDPOINT"]}:8080"
     end
   end
 end
