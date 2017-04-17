@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = BinnacleChat::VERSION
   s.authors     = ["Brian Sam-Bodden"]
   s.email       = ["brian@binnacle.io"]
-  s.homepage    = "http://binnacle.io/widgets/rails"
+  s.homepage    = "https://binnacle.io/docs/03_widgets"
   s.summary     = "A Chat Widget for Rails."
   s.description = "A Chat Widget for Rails powered by Binnacle."
   s.license     = "MIT"
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency 'coffee-rails', '~> 4.1', '>= 4.1.0'
-  s.add_dependency 'rails', '~> 4.2'
   s.add_dependency 'sass-rails', '~> 5.0'
   s.add_dependency 'gon', '~> 6.0', '>= 6.0.1'
 

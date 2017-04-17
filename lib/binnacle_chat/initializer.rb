@@ -5,7 +5,7 @@ module BinnacleChat
     def initialize_binnacle_chat
       gon.apiKey = ENV["BINNACLE_API_KEY"]
       gon.apiSecret = ENV["BINNACLE_API_SECRET"]
-      gon.contextId = ENV["BINNACLE_CHAT_CTX"]
+      gon.channelId = ENV["BINNACLE_CHAT_CHANNEL"]
       if Rails.env.production?
         gon.endPoint = "https://#{ENV["BINNACLE_ENDPOINT"]}"
       else

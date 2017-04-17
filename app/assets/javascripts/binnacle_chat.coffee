@@ -112,7 +112,7 @@ $ ->
       apiKey: gon.apiKey
       apiSecret: gon.apiSecret
       endPoint: gon.endPoint
-      contextId: gon.contextId
+      channelId: gon.channelId
       missedMessages: true
       limit: 5
       since: 30
